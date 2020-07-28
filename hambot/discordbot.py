@@ -43,7 +43,7 @@ async def on_message(message):
         await message.channel.send('あほのham')
     elif 'はむカービィ'in message.content:
         await message.channel.send('俺はむらびと使い')
-    elif message.content =='LeGal':
+    elif 'LeGal'in message.content:
         await message.channel.send('キャー素敵なのだぁ!!')
 #Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
