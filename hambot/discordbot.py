@@ -12,20 +12,28 @@ client = discord.Client()
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print('ログインしました')
+
 @client.event
 async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
     if message.author.bot:
         return
-    elif message.content.startswith('@HamterRAW'):#文字列の開始が一致
-        await message.channel.send('おい呼ばれてるぞHamterRAW')
+    if message.content == '/Instructions':#説明書
+        await message.channel.send(
+        'このbotは特定の単語に反応して発言します\n気が向いたときに更新していますので遊んであげてください\n現在手動で稼働しているので常時反応することができません')
+    if message.content == '/DM':#dm送信
+        dm=await message.author.create_dm()#メッセージ送信者へDM作成
+        await dm.send('これは秘密のメッセージだぞ')#DM送信
+    if message.content.startswith('HamterRAW'):#文字列の開始が一致
+        member_mention="<@312554285009469442>"#これはいけるはず
+        await message.channel.send(f'{member_mention}おい呼ばれてるぞ')
     elif message.content =='ハム':
         await message.channel.send('ローストハム')
     elif '太郎' in message.content:
         await message.channel.send('ヘケッ')
     elif message.content =='Ham':
         await message.channel.send('大好きなのは血だまりと金')
-    elif message.content =='HamterRAW':
+    elif message.content =='ビビりハム':
         await message.channel.send('ヘッドフォンぶん投げHamterRAW')
     elif message.content =='嫌い':
         await message.channel.send('Ham好きkillyou')
@@ -33,5 +41,6 @@ async def on_message(message):
         await message.channel.send('あほのham')
     elif 'はむカービィ'in message.content:
         await message.channel.send('俺はむらびと使い')
+
 #Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
