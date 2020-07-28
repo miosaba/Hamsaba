@@ -24,8 +24,7 @@ async def on_message(message):
         dm=await message.author.create_dm()#メッセージ送信者へDM作成
         await dm.send('これは秘密のメッセージだぞ')#DM送信
     if message.content == '/command':#コマンド表示
-        await message.channel.send(
-        'Instructions,DM')
+        await message.channel.send('Instructions,DM')
     if message.content.startswith('HamterRAW'):#文字列の開始が一致
         member_mention="<@312554285009469442>"#これでいける
         await message.channel.send('おい呼ばれてるぞHamterRAW')
