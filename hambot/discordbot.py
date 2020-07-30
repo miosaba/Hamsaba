@@ -1,6 +1,6 @@
 #インストールした discord.py を読み込む
 import discord
-from hambot.tokun import tokun
+import tokun
 import random
 
 # 自分のBotのアクセストークンに置き換えてください
