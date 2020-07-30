@@ -15,6 +15,7 @@ async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
     if message.author.bot:
         return
+    wait_message = message
     if message.content == '/Instructions':#説明書
         await message.channel.send(
         'このbotは特定の単語に反応して発言します\n気が向いたときに更新していますので遊んであげてください\n現在手動で稼働しているので常時反応することができません')
@@ -46,12 +47,10 @@ async def on_message(message):
     elif message.content == "/randamDM":
         randam_dm=[]
         random_content=['はむすき','はむきらい','はむふつう']
-        
-        wait_message = ""
-        while wait_message != "/end":#文字列判定
+        while wait_message.content != "/end":#文字列判定
             await message.channel.send('何かコメントして /endで終了')
             wait_message = await client.wait_for("message")#ユーザーからのメッセージを待つ
-            if wait_message !="/end":
+            if wait_message.content !="/end":
                 await message.channel.send('受け付けました')
                 dms=await message.author.create_dm()#メッセージ送信者へDM作成
                 randam_dm.append(dms)#ユーザーを保存
