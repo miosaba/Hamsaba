@@ -53,7 +53,7 @@ async def on_message(message):
     wait_message='hello'
     if message.content == "/randamDM":
         await message.channel.send('何かコメントして /endで終了')
-        while wait_message == "/end":#文字列判定
+        while wait_message != "/end":#文字列判定
             wait_message = await client.wait_for("message")#ユーザーからのメッセージを待つ
             if wait_message !="/end":
                 dms=await message.author.create_dm()#メッセージ送信者へDM作成
