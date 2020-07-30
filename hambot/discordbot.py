@@ -58,7 +58,6 @@ async def on_message(message):
             if wait_message !="/end":
                 dms=await message.author.create_dm()#メッセージ送信者へDM作成
                 randam_dm.append(dms)#ユーザーを保存
-                message.channel.send('何かコメントして /endで終了a')
         for dm in randam_dm:
             content = random.choice(random_content)# 送信するメッセージをランダムで決める
             await dm.send(content)#DM送信
