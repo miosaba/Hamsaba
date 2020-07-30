@@ -1,8 +1,9 @@
 #インストールした discord.py を読み込む
 import discord
+from hambot.tokun import tokun
 
 # 自分のBotのアクセストークンに置き換えてください
-TOKEN = ''
+TOKEN = tokun.TOKUN
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
