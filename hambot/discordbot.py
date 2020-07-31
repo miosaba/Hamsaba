@@ -2,7 +2,7 @@
 import discord
 import tokun
 import random
-
+import ans
 # 自分のBotのアクセストークンに置き換えてください
 TOKEN = tokun.TOKUN
 
@@ -18,33 +18,36 @@ async def on_message(message):
     if message.author.bot:
         return
     wait_message = message
-    if message.content == '/Instructions':  # 説明書
-        await message.channel.send(
-        'このbotは特定の単語に反応して発言します\n気が向いたときに更新していますので遊んであげてください\n現在手動で稼働しているので常時反応することができません')
-    elif message.content == '/DM':  # dm送信
-        dm = await message.author.create_dm()  # メッセージ送信者へDM作成
-        await dm.send('これは秘密のメッセージだぞ')  # DM送信
-    elif message.content == '/command':  # コマンド表示
-        await message.channel.send('Instructions,DM')
-    elif message.content.startswith('HamterRAW') or 'HamterRAW' in message.content:  # 文字列の開始が一致
-        member_mention = "<@312554285009469442>"  # これでいける
-        await message.channel.send(f'{member_mention}おい呼ばれてるぞ')
-    elif message.content == 'ハム' or 'ハム' in message.content:
-        await message.channel.send('ローストハム')
-    elif '太郎' in message.content:
-        await message.channel.send('ヘケッ')
-    elif message.content == 'Ham':
-        await message.channel.send('大好きなのは血だまりと金')
-    elif message.content == 'ビビりハム':
-        await message.channel.send('ヘッドフォンぶん投げHamterRAW')
-    elif message.content == '嫌い':
-        await message.channel.send('Ham好きkillyou')
-    elif message.content == 'ham':
-        await message.channel.send('あほのham')
-    elif 'はむカービィ' in message.content:
-        await message.channel.send('俺はむらびと使い')
-    elif 'LeGal' in message.content or 'リーガルさん' in message.content:
-        await message.channel.send('キャー素敵なのだぁ!!')
+    if message.content == ans.hitWord[0]:  #説明書
+        await message.channel.send(ans.ansBox[0])
+    if message.content == ans.hitWord[1] :#dm送信
+        dm=await message.author.create_dm() #メッセージ送信者へDM作成
+        await dm.send(ans.ansBox[1]) #DM送信
+    if message.content == ans.hitWord[2]: #コマンド表示
+        await message.channel.send(ans.ansBox[2])
+    if ans.hitWord[3] in message.content: #メンション
+        await message.channel.send(ans.ansBox[3])
+    elif ans.hitWord[4] in message.content: #ハム
+        await message.channel.send(ans.ansBox[4])
+    elif ans.hitWord[5] in message.content: #太郎
+        await message.channel.send(ans.ansBox[5])
+    elif message.content ==ans.hitWord[6]: #Ham
+        await message.channel.send(ans.ansBox[6])
+    elif message.content ==ans.hitWord[7]: #ビビり
+        await message.channel.send(ans.ansBox[7])
+    elif message.content ==ans.hitWord[8]: #嫌い
+        await message.channel.send(ans.ansBox[8])
+    elif message.content ==ans.hitWord[9]: #ham
+        await message.channel.send(ans.ansBox[9])
+    if ans.hitWord[10]in message.content: #はむカービィ
+        await message.channel.send(ans.ansBox[10])
+    if ans.hitWord[11] in message.content: #リーガルさん
+        await message.channel.send(ans.ansBox[11])
+    if message.content == ans.hitWord[12]: #ランダム表示 ok
+        content = random.choice(ans.random_contents)# 送信するメッセージをランダムで決める
+        await message.channel.send(content) #メッセージが送られてきたチャンネルに送
+
+
     elif message.content == "/randamDM":
         randam_dm = []
         random_content = ['はむすき','はむきらい','はむふつう']
@@ -73,11 +76,7 @@ async def on_message(message):
         randam_dmSecond.clear()
         await message.channel.send('終了')
     
-    # ランダム表示 ok
-    random_contents = ["にゃーん", "わん！", "コケッコッコー",]
-    if message.content == "ないて":
-        content = random.choice(random_contents)  # 送信するメッセージをランダムで決める
-        await message.channel.send(content)  # メッセージが送られてきたチャンネルに送
+
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
