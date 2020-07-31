@@ -58,7 +58,6 @@ async def on_message(message):
                 await message.channel.send('受け付けました')
                 dms = await wait_message.author.create_dm()  # メッセージ送信者へDM作成
                 randam_dm.append(dms)  # ユーザーを保存
-                await message.channel.send(wait_message)
         await message.channel.send('受付終了')
         for dm in randam_dm:
             content = random.choice(random_content)  # 送信するメッセージをランダムで決める
