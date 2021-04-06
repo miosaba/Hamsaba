@@ -6,7 +6,8 @@ import tokun
 from voice_generator import creat_WAV
 
 
-client = commands.Bot(command_prefix='.')
+
+client = commands.Bot(command_prefix='/')
 voice_client = None
 
 
@@ -22,7 +23,7 @@ async def on_ready():
 @client.command()
 async def join(ctx):
     #Botをボイスチャンネルに入室。
-    voice_state = ctx.author.voice
+    voice_state = ctx.author.voice.channel
 
     if (not voice_state) or (not voice_state.channel):
         #もし送信者がどこのチャンネルにも入っていないなら
