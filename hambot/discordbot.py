@@ -4,7 +4,7 @@ from discord.ext import commands
 import tokun
 from ans import ansBox
 import subprocess
-import ffmpeg
+#import ffmpeg
 import tokun
 from import_random import diceroll
 # 自分のBotのアクセストークンに置き換えてください
@@ -35,9 +35,10 @@ async def on_message(message):
         order = say.strip('!dice ')
         cnt, mx = list(map(int, order.split('d'))) # さいころの個数と面数
         dice = diceroll(cnt, mx) # 和を計算する関数(後述)
-        await message.channel.send(dice[cnt])
+        mention = f'{message.author.mention} {dice[cnt]} ' #メンションとダイス結果を格納
+        await message.channel.send(mention)
         del dice[cnt]
-
+        del mention
         # さいころの目の総和の内訳を表示する
         await message.channel.send(dice)
     
