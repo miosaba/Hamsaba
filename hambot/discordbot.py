@@ -4,6 +4,7 @@ import random
 
 import tokun
 import messageCollection
+from import_random import diceroll
 # 自分のBotのアクセストークンに置き換えてください
 TOKEN = tokun.TOKUN
 
@@ -42,6 +43,22 @@ async def on_message(message):
             content = random.choice(messageCollection.myRandomDmMessageList)  # 送信するメッセージをランダムで決める
             await dm.send(content)  # DM送信
         randam_dm.clear()
+        
+     #サイコロ
+    if message.content.startswith("!dice"):
+        # 入力された内容を受け取る
+        say = message.content 
+
+        # [!dice ]部分を消し、AdBのdで区切ってリスト化する
+        order = say.strip('!dice ')
+        cnt, mx = list(map(int, order.split('d'))) # さいころの個数と面数
+        dice = diceroll(cnt, mx) # 和を計算する関数(後述)
+        mention = f'{message.author.mention} {dice[cnt]} ' #メンションとダイス結果を格納
+        await message.channel.send(mention)
+        del dice[cnt]
+        del mention
+        # さいころの目の総和の内訳を表示する
+        await message.channel.send(dice)
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)

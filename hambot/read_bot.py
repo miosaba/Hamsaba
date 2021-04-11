@@ -52,6 +52,9 @@ async def on_message(message):
             message.guild.voice_client.play(source)
         else:
             pass
+            
+    await client.process_commands(message)
+    
 
 
 client.run(tokun.TOKUN)
