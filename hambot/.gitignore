@@ -1,1 +1,4 @@
-./tokun.py
+tokun.py
+.vscode
+src\__pycache__/*
+__pycache__/*
